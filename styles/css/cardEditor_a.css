@@ -1,0 +1,1172 @@
+:root {
+	--manageToolbarHeight: 60px;
+	--editorBgColor: #2E383E;
+	--activeCardBorderWidth: 3px;
+}
+.container-fluid {
+	width: 100%;
+}
+nav {
+	height: 60px;
+}
+nav img {
+	height: 50px;
+}
+
+/* Wizard
+------------------*/
+#wizardForm {
+	height: 100%;
+}
+.ml-fields #selectLanguage .lang-c {
+	font-size: 16px;
+}
+
+/* Main Editor Box
+-----------------*/
+#cardEditor {
+	height: 100%;
+}
+
+/* Side Menu
+-----------------*/
+.sideEditor {
+	display: flex;
+	padding-left: 0;
+	padding-right: 0;
+	width: var(--sideEditorWidth);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+	padding-top: 60px;
+	overflow: auto;
+	background-color: var(--editorBgColor);
+}
+html[dir="rtl"] .sideEditor {
+	left: auto;
+	right: 0;
+}
+.editorBox {
+	background-color: var(--editorBgColor);
+	width: calc(100% - var(--editorTabsWidth));
+	height: 100%;
+	padding: 20px 23px;
+	overflow: hidden;
+}
+
+/* Preview
+-----------------*/
+.editorBoxPreview {
+	margin-left: auto;
+	left: var(--sideEditorWidth);
+	width: calc(100% - var(--sideEditorWidth));
+}
+html[dir="rtl"] .editorBoxPreview {
+	margin-left: 0;
+	margin-right: auto;
+}
+.preview-screen-container {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	justify-content: flex-start;
+	padding-top: 10px;
+}
+#previewScreen {
+	width: 400px;
+	height: calc(95vh - 90px);
+	border-radius: 10px;
+	border: solid 1px #c5c5c5;
+	box-shadow: 0 0.25em 0.9em -0.1em rgb(0 0 0 / 30%);
+}
+.preview-screen-container .preview-btn-container {
+	margin-bottom: 10px;
+	margin-top: -12px;
+}
+.preview-screen-container .btn-group {
+	display: flex;
+	gap: 0px;
+}
+.preview-screen-container .btn-group .btn {
+	display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    margin: 0;
+}
+.preview-screen-container .btn-group .btn:first-child {
+	border-bottom-left-radius: var(--interfaceBtnRadius);
+}
+.preview-screen-container .btn-group .btn:last-child {
+	border-bottom-right-radius: var(--interfaceBtnRadius);
+}
+.preview-screen-container .btn-group .btn .mobile-notch-90 {
+	transform: rotate(90deg);
+}
+.preview-screen-container .btn-group .btn:not(.btn-primary) {
+	background-color: var(--editorTabsBgColor) !important;
+	border-color: var(--editorTabsBgColor) !important;
+}
+.preview-screen-container .btn-group .btn i {
+	font-size: 1.3em;
+}
+
+/* Loading
+-----------------*/
+#loadingScreen {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: white;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+#loadingScreenInside {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 50px;
+	width: 100%;
+}
+
+/* Top Toolbar
+-----------------*/
+#main-interface-header {
+	width: 100%;
+	background-color: #8120E0;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 101;
+	height: var(--manageToolbarHeight);
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+/* Pages
+-----------------*/
+.cardPagesContainer {
+	position: relative;
+	margin-top: 5px;
+	display: flex;
+	flex-flow: column;
+	gap: 16px;
+}
+.cardPagesContainer .no-pages {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+html[dir="rtl"] .cardPagesContainer .no-pages {
+	left: auto;
+	right: 0;
+}
+.action-buttons {
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	grid-gap: 16px;
+	list-style: none;
+	margin: 0 !important;
+	padding: 0;
+}
+.action-buttons > li {
+	float: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.page-box-item.ui-sortable-helper {
+	list-style: none;
+	/* in team card the modal is covering
+	the helper */
+	z-index: 1050 !important;
+}
+.action-buttons > .page-box-item {
+	margin: 0;
+	border: none;
+}
+.action-buttons > .draggable-placeholder {
+	min-height: 50px;
+	border-radius: 12px;
+}
+.action-buttons .pageBox,
+.page-box-item.ui-sortable-helper .pageBox {
+	width: 100%;
+	min-height: 50px;
+	border: 1px solid transparent;
+	position: relative;
+	padding: 15px 16px;
+	padding-bottom: 2px;
+	background-color: #E4E8EE;
+	color: var(--editorTextColor);
+	font-weight: 600;
+	border-radius: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	border-radius: 12px;
+}
+.action-buttons .pageBox:hover {
+	opacity: 0.8;
+}
+.action-buttons .pageBox .deleteMe,
+.page-box-item.ui-sortable-helper .pageBox .deleteMe {
+	display: none;
+	position: absolute;
+	top: 2px;
+	right: 3px;
+	cursor: pointer;
+	padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: #E75B5B;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+
+}
+html[dir="rtl"] .action-buttons .pageBox .deleteMe,
+html[dir="rtl"] .page-box-item.ui-sortable-helper .pageBox .deleteMe {
+	right: 0;
+	left: auto;
+}
+.action-buttons .pageBox:hover .deleteMe,
+.page-box-item.ui-sortable-helper .pageBox:hover .deleteMe {
+	display: flex;
+}
+.action-buttons .pageBox .dragMe,
+.page-box-item.ui-sortable-helper .pageBox .dragMe {
+	display: none;
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	cursor: move;
+	padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+}
+html[dir="rtl"] .action-buttons .pageBox .dragMe,
+html[dir="rtl"] .page-box-item.ui-sortable-helper .pageBox .dragMe {
+	right: auto;
+	left: 0;
+}
+.action-buttons .pageBox:hover .dragMe,
+.page-box-item.ui-sortable-helper .pageBox:hover .dragMe {
+	display: flex;
+}
+.action-buttons .pageBox .editMe,
+.page-box-item.ui-sortable-helper .pageBox .editMe {
+	font-size: 11px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 0.2em;
+}
+.page-box-item .pageBox .page-title {
+	font-size: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 30px;
+}
+
+/* long text css - add `...` after 2 lines
+solution: https://stackoverflow.com/a/13924997/9031256
+---------------------*/
+.page-box-item:not([data-is-main="true"]) .pageBox .page-title {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+/* Main Action Buttons - change a little the design of the main page
+------------------*/
+.action-buttons[data-id="mainACB"] {
+	margin-top: 0;
+	display: flex;
+	gap: 16px;
+}
+.page-box-item[data-is-main="true"] {
+	width: calc(100% / 2);
+	height: 60px;
+}
+.page-box-item[data-is-main="true"] .pageBox .editMe {
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.page-box-item[data-is-main="true"] .pageBox .editMe .page-icon-container {
+	transform: translateY(-35%);
+}
+.page-box-item[data-is-main="true"] .pageBox {
+	height: 100%;
+}
+.page-box-item[data-is-main="true"] .pageBox .page-title {
+	white-space: nowrap;
+	max-width: 100%;
+}
+
+/* Main Action Buttons - change a little the design of the main page
+------------------*/
+.page-box-item[data-type="skeleton"] .pageBox {
+	border: 2px dashed #D9D9D9 !important;
+	background-color: #F7F7F7 !important;
+}
+.page-box-item[data-type="skeleton"] .dragMe,
+.page-box-item[data-type="skeleton"] .deleteMe {
+	display: none !important;
+}
+@media (max-width: 992px) {
+	.action-buttons {
+		grid-template-columns: repeat(3,1fr);
+	}
+}
+@media (max-width: 767px) {
+	.action-buttons {
+		grid-template-columns: 100%;
+	}
+	.action-buttons[data-id="mainACB"] {
+		flex-flow: column;
+	}
+	.page-box-item[data-is-main="true"] {
+		width: 100%;
+	}
+	.action-buttons .pageBox .dragMe,
+	.page-box-item.ui-sortable-helper .pageBox .dragMe {
+		z-index: 5;
+		font-size: 14px;
+		width: 35px;
+	    height: 35px;
+	    left: auto !important;
+	    right: 50px !important;
+		top: 50%;
+		transform: translateY(-50%);
+	    align-items: center;
+	    justify-content: center;
+	}
+	.ml-dir-support[data-dir="rtl"] .pageBox .dragMe,
+	.page-box-item[data-dir="rtl"].ui-sortable-helper .pageBox .dragMe {
+		left: 50px !important;
+		right: auto !important;
+	}
+	.action-buttons .pageBox .deleteMe,
+	.page-box-item.ui-sortable-helper .pageBox .deleteMe {
+		z-index: 5;
+		font-size: 14px;
+	    width: 35px;
+	    height: 35px;
+		top: 50%;
+		transform: translateY(-50%);
+	    align-items: center;
+	    justify-content: center;
+		left: auto !important;
+		right: 3px !important;
+	}
+	.ml-dir-support[data-dir="rtl"] .pageBox .deleteMe,
+	.page-box-item[data-dir="rtl"].ui-sortable-helper .pageBox .deleteMe {
+		left: 3px !important;
+		right: auto !important;
+	}
+	.action-buttons .pageBox,
+	.page-box-item.ui-sortable-helper .pageBox {
+		justify-content: flex-start;
+		padding-top: 2px;
+		padding-right: 95px;
+	}
+	.ml-dir-support[data-dir="rtl"] .pageBox,
+	.page-box-item[data-dir="rtl"].ui-sortable-helper .pageBox {
+		padding-right: 16px;
+		padding-left: 95px;
+	}
+	.action-buttons .page-box-item[data-type="skeleton"][data-is-main="true"] .pageBox,
+ 	.page-box-item[data-type="skeleton"][data-is-main="true"].ui-sortable-helper .pageBox {
+		justify-content: center;
+		padding: 0;
+	}
+	.action-buttons .pageBox .editMe,
+	.page-box-item[data-is-main="true"]:not([data-type="skeleton"]) .pageBox .editMe,
+	.page-box-item.ui-sortable-helper .pageBox .editMe {
+		/* 95% because we leave some empty space between the sorting button and the text
+		so the sortable will get the click event if he user missed a little */
+		width: 95%;
+		flex-flow: row;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	.page-box-item .pageBox .page-title {
+		height: auto;
+		text-align: start;
+	}
+	.page-box-item[data-is-main="true"] .pageBox .editMe .page-icon-container {
+		transform: translateY(0%);
+	}
+	.page-icon[data-img-type="svg"] {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+/* Pages
+-----------------*/
+#itemWidgetList {
+	max-height: 600px;
+	overflow: auto;
+}
+#itemWidgetList .category {
+	width: 100%;
+}
+#itemWidgetList .category .categry-items {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+#itemWidgetList .category .category-title {
+	font-size: 17px;
+	font-weight: bold;
+}
+.itemWidget {
+	width: 100px;
+	height: 90px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	border: 1px solid transparent;
+	background-color: #E4E8EE;
+	border-radius: 12px;
+	cursor: pointer;
+	padding: 16px 5px;
+	padding-bottom: 0px;
+}
+/* hide all buttons that are placed after `showMore` button */
+.categry-items:not(.show-more-item-widget) .itemWidget[data-type="showMore"] ~ .itemWidget {
+	display: none;
+}
+/* show all buttons that are placed after `showMore` button with animation */
+.categry-items.show-more-item-widget .itemWidget[data-type="showMore"] ~ .itemWidget {
+	animation: cardPageFadeIn 0.3s linear;
+}
+.itemWidget:hover {
+	background-color: var(--primary_color);
+	color: var(--primaryTextColor);
+}
+.itemWidget:active {
+	background-color: var(--primaryActiveColor);
+	color: var(--primaryTextColor);
+}
+.page-icon[data-img-type="svg"] {
+	display: inline-block;
+	width: 1.65em !important;
+	height: 1.65em !important;
+	margin-left: 2px;
+}
+.itemWidget:hover .page-icon[data-img-type="svg"] {
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(2deg) brightness(105%) contrast(101%);;
+}
+html[dir="rtl"] .page-icon[data-img-type="svg"] {
+	margin-left: 0;
+	margin-right: 2px;
+}
+.itemWidget .page-title {
+	text-align: center;
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	font-size: 13px;
+}
+
+/* Back To Dashboard
+-----------------*/
+#backToDashBoard {
+	color: white !important;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+/* The icon is shown inside of image tag and usually the upload file
+is opening the image in colorbox preview but in this case we don't want it to do anything */
+.edit-action-btn #cE_PageIcon_preview[data-type="svg"] {
+	pointer-events: none;
+}
+
+/* Action Button Wizard
+-------------------*/
+.modal.s123-modal.edit-action-btn .modal-body {
+	border-radius: 0;
+}
+.edit-action-btn .modal-body #pageContentForm {
+	padding: 15px;
+}
+/* disabled flags style when user enters username */
+#pageContentForm .intl-tel-input .disabled {
+	pointer-events: none;
+	overflow: hidden;
+}
+#pageContentForm .intl-tel-input .disabled .selected-flag {
+	opacity: 0.5;
+}
+
+.editorBox hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	border-top: 1px solid #c1c1c1;
+}
+
+/* Phone Input - force stretch on full width
+------------------------*/
+.intl-tel-input {
+	display: block;
+}
+
+/* Modals Body Style
+---------------------*/
+#addNewItem,
+.edit-action-btn {
+	/* bring forward the modal because 
+	in team the modal of the card is covering this one */
+	z-index: 1051;
+}
+#addNewItem .modal-body .items-widget-container,
+.main-buttons-limit .modal-body .main-buttons-limit-msg,
+.select-language .modal-body .language-container {
+	padding: 15px;
+	background: #fff;
+}
+#addNewItem .modal-body .items-widget-container,
+.main-buttons-limit .modal-body .main-buttons-limit-msg {
+	border-radius: var(--editorEditBoxRadius);
+}
+#addNewItem .item-widget-search-container {
+	position: relative;
+}
+/**/
+#addNewItem .item-widget-search-container .form-control-feedback {
+    display: flex;
+    align-items: center;
+    place-content: center;
+    height: 100%;
+	color: #484848;
+	font-size: 14px;
+	padding: 10px;
+	top: 0;
+	right: 0;
+}
+#addNewItem .item-widget-search-container .form-control-feedback.reset-search {
+	cursor: pointer;
+	pointer-events: auto;
+}
+html[dir="rtl"] #addNewItem .item-widget-search-container .form-control-feedback {
+	right: auto;
+	left: 0;
+}
+#itemWidgetList > div  {
+	margin-top: 10px;
+}
+.items-widget-container.search-active #itemWidgetList[data-items-amount="0"] .no-widgets-msg {
+	display: block !important;
+}
+.items-widget-container.search-active .item-widget-search-container .search {
+	display: none !important;
+}
+.items-widget-container.search-active .item-widget-search-container .reset-search {
+	display: flex !important;
+}
+
+/* Card Pages Styles
+--------------------*/
+.cards-container > ul {
+	display: flex;
+	flex-flow: column;
+}
+.cards-container > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0 var(--activeCardBorderWidth);
+}
+.cards-container #noResultsMsg {
+	display: none;
+	color: #fff;
+}
+
+.title1Box {
+	position: relative;
+}
+.languageBox a {
+	color: inherit;
+}
+.languageBox {
+	padding: 10px 0;
+}
+.ml-fields[data-dir="rtl"] .ml-dir-support {
+	direction: rtl;
+}
+.ml-fields[data-dir="ltr"] .ml-dir-support {
+	direction: ltr;
+}
+[data-id="allACBContainer"] .ml-dir-support[data-dir="rtl"] {
+	direction: rtl;
+}
+[data-id="allACBContainer"] .ml-dir-support[data-dir="ltr"] {
+	direction: ltr;
+}
+/* icon */
+.ml-fields #selectLanguage {
+	position: absolute;
+    right: 0;
+    top: -6px;
+    font-size: 24px;
+	color: inherit;
+}
+html[dir="rtl"] .ml-fields #selectLanguage {
+	right: auto;
+	left: 0;
+}
+.languageBox .is-loading,
+#selectLanguage .is-loading {
+	display: none;
+}
+#selectLanguage.translation {
+	opacity: 0.9;
+	pointer-events: none;
+}
+.languageBox.translation .is-loading,
+#selectLanguage.translation .is-loading {
+	display: inline-block !important;
+}
+
+.cardEditBox {
+	background-color: var(--editorEditBox);
+	border-radius: var(--editorEditBoxRadius);
+	color: var(--editorEditBoxTitleColor);
+	padding: 24px;
+	margin-bottom: 24px;
+}
+.cardEditBox .pagesBox-flex-space {
+	display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.form-floating {
+	position: relative;
+	margin-bottom: 10px;
+}
+.form-floating label {
+	position: absolute;
+	top: 0px;
+	left: 10px;
+	margin-bottom: 0;
+	opacity: 0.6;
+}
+.form-floating input.form-control, .form-floating textarea.form-control {
+	padding-top: 30px;
+	padding-bottom: 15px;
+}
+
+/* Publish Btn
+------------------*/
+.publishButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 21px;
+    font-size: 14px;
+    gap: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 80%;
+    margin-top: 5px;
+}
+
+/* Layouts
+------------------*/
+#allLayouts {
+	display: grid;
+    grid-template-columns: auto auto;
+}
+@media (max-height: 600px) {
+	#allLayouts {
+	    grid-template-columns: auto auto auto;
+	}
+}
+#allLayouts .layout-item {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+	max-width: 100%;
+	padding: 10px 10px 0 10px;
+	text-align: center;
+	background-color: #f1f1f1;
+	margin: 5px;
+	border: solid 3px transparent;
+	border-radius:  15px;
+}
+#allLayouts .layout-item.active {
+	border: solid 3px var(--primary_color);
+}
+#allLayouts .layout-item img {
+	width: 100%;
+}
+#allLayouts .layout-item .layout-name {
+	width: 100%;
+	padding: 10px;
+}
+
+
+/* Off Canvas Modal
+-----------------------------*/
+.modal.s123-modal.off-canvas-mode {
+	display: block !important;
+	width: 460px;
+	height: 100%;
+	transition: transform .3s ease-in-out;
+	transform: translateX(-100%);
+	opacity: 1;
+	padding: 0 !important;
+	overflow: hidden;
+}
+html[dir="rtl"] .modal.s123-modal.off-canvas-mode {
+	transform: translateX(100%);
+}
+/* Mobile  Tablet */
+@media (max-width: 992px) {
+	.modal.s123-modal.off-canvas-mode {
+		width: 100% !important;
+	}
+}
+.modal.s123-modal.off-canvas-mode.in {
+	transform: translateX(0%) !important;
+}
+.modal.s123-modal.off-canvas-mode .modal-dialog {
+	padding: 0 !important;
+	margin: 0 !important;
+	height: 100% !important;
+	width: 100% !important;
+	transform: translate(0px, 0px) !important;
+}
+.modal.s123-modal.off-canvas-mode .modal-dialog {
+	height: 100% !important;
+}
+.modal.s123-modal.off-canvas-mode .modal-dialog .modal-content {
+	height: 100% !important;
+}
+.modal.s123-modal.off-canvas-mode .modal-header {
+	border-radius: 0;
+}
+.modal.s123-modal.off-canvas-mode .modal-body {
+	height: calc(100% - 78px);
+}
+.modal.s123-modal.off-canvas-mode.with-save-btns .modal-body {
+	height: calc(100% - 135px) !important;
+}
+.modal.s123-modal.off-canvas-mode .modal-body .bootbox-body {
+	height: 100%;
+}
+
+/* Reduce the backdrop opacity of the off-canvas modals
+-----------------*/
+#imageLibrary.modal.off-canvas-mode.in ~ .modal-backdrop {
+	opacity: 0.3;
+}
+
+/* Premium Features Handler
+---------------*/
+.modal.s123-modal .pro-features-text-container {
+	padding: 10px;
+}
+.modal.s123-modal.pro-features {
+	z-index: 1052;
+}
+.backdropManaul.pro-features {
+	z-index: 1051;
+}
+
+/* Google Autocomplete Drop Down - Bring the drop down
+before the modal otherwise the modal will cover it
+---------------------------*/
+.pac-container {
+	z-index: 1051;
+}
+
+/* Take a photo modal
+--------------------*/
+.modal.s123-modal#takePhotoAndVideo .modal-body {
+	height: 650px;
+	overflow: auto;
+}
+@media (max-width: 767px) {
+	.modal.s123-modal#takePhotoAndVideo .modal-body {
+		height: 570px;
+	}	
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-tabs-container {
+	padding-top: 20px;
+	text-align: center;
+}
+.modal.s123-modal#takePhotoAndVideo .no-camera-container,
+.modal.s123-modal#takePhotoAndVideo .t-v-container,
+.modal.s123-modal#takePhotoAndVideo .t-p-container {
+	padding: 20px 0 20px 0;
+	text-align: center;
+}
+.modal.s123-modal#takePhotoAndVideo .no-camera-container {
+  	width: 320px;
+  	height: 240px;
+  	margin: auto;
+}
+.modal.s123-modal#takePhotoAndVideo .no-camera-container.show-msg {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+.modal.s123-modal#takePhotoAndVideo .perfect-result-msg {
+	text-align: center;
+    width: 50%;
+    margin: 15px auto auto;
+}
+@media (max-width: 767px) {
+	.modal.s123-modal#takePhotoAndVideo .perfect-result-msg {
+		width: 90%;
+	}
+}
+.modal.s123-modal#takePhotoAndVideo #t-v-start-record-btn,
+.modal.s123-modal#takePhotoAndVideo #t-v-stop-record-btn {
+	margin-top:  12px;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-play-video-container {
+	width: 320px;
+	height: 180px;
+	position: relative;
+	margin: auto;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-play-video-container .t-v-play-video-timer {
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	color: #fff;
+}
+.modal.s123-modal#takePhotoAndVideo .no-camera-container,
+.modal.s123-modal#takePhotoAndVideo .t-v-container .t-v-record-container,
+.modal.s123-modal#takePhotoAndVideo .t-v-container .t-v-play-container,
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-video-container,
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-image-container {
+	display: none;
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .btn {
+	margin-top: 14px;
+}
+.modal.s123-modal#takePhotoAndVideo .no-camera-container,
+.modal.s123-modal#takePhotoAndVideo .t-v-container video,
+.modal.s123-modal#takePhotoAndVideo .t-p-container video,
+.modal.s123-modal#takePhotoAndVideo .t-p-container canvas {
+	box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container .t-v-video-container div {
+	position: relative;
+    margin: 5px;
+    display: inline-block;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container .t-v-video-container {
+	border: solid 3px transparent;
+	cursor: pointer;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container #rmv-bg {
+	box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+	width: 320px;
+  	height: 180px;
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priviews {
+	height: 500px;
+	overflow: auto;
+}
+@media (max-width: 767px) {
+	.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priviews {
+		height: 420px;
+	}
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-container {
+	margin: 5px;
+    display: inline-block;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container #rmv-bg i,
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image i {
+	position: absolute;
+	top: 90px;
+	left: 130px;
+}
+@media (max-width: 767px) {
+	.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image i {
+		left: 70px;
+	}
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container #rmv-bg i {
+	top: 65px;
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image {
+	position: relative;
+	width: 320px;
+	height: 240px;
+	background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-container {
+	box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+    vertical-align: baseline;
+	border: solid 3px transparent;
+	cursor: pointer;
+	width: 326px;
+	height: 279px;
+}
+@media (max-width: 767px) {
+	.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image {
+		background-size: contain;
+	}
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-title {
+	background-color: #581F65;
+    color: #fff;
+    padding: 6px;
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image[data-img-type="cartoonSelfie"] {
+	background-size: contain;
+}
+.modal.s123-modal#takePhotoAndVideo .t-v-container .t-v-priview-container.active,
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-container.active {
+	border: solid 3px var(--primary_color);
+}
+.modal.s123-modal#takePhotoAndVideo .t-p-container .t-p-priview-image .t-p-request-fail-msg {
+	position: absolute;
+    top: 60px;
+    left: 0px;
+}
+.modal.s123-modal#takePhotoAndVideo {
+	z-index: 1052;
+}
+.backdropManaul.take-photo-and-video {
+	z-index: 1051;
+}
+
+/* Disabled Fields Cover
+------------------------*/
+.inactive-layout-field {
+	display: none;
+}
+
+/* Team Card Editor Design - Adapt it to look like the wizard
+------------------------*/
+.modal.card-item-editor.off-canvas-mode {
+	width: 400px;
+}
+.modal.card-item-editor .modal-body,
+.modal.card-item-editor .modal-footer,
+.modal.card-item-editor .modal-content,
+.modal.card-item-editor .modal-body .card-item-editor-container {
+	background-color: var(--editorBgColor);
+}
+.modal.card-item-editor .modal-footer {
+	border-top-color: var(--editorBgColor);
+}
+.modal.card-item-editor .modal-body .card-item-editor-container {
+	padding: 15px;
+	max-height: 100%;
+    overflow: auto;
+}
+
+/* Action Button Gallery Interface
+----------------*/
+.item-settings-container .multiple-images-preview-container {
+	max-height: 200px;
+    overflow: auto;
+}
+
+/* Drop Zone Error Message Fix - In the gallery
+there is a limit of items amount and the editor modal covered the
+error modal so here we fix it
+---------------------*/
+.dp-error-msg {
+	/* bring forward the modal because 
+	in team the modal of the card is covering this one */
+	z-index: 1052;
+}
+.dp-error-msg.backdropManaul {
+	/* bring forward the modal because 
+	in team the modal of the card is covering this one */
+	z-index: 1051;
+}
+
+/* Multi Language Add New Button Design
+-------------------------*/
+.a-c-b-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Facebook Timeline
+---------------------*/
+.fb-timeline-container {
+	display: flex;
+	justify-content: center;
+	height: 400px;
+	width: 100%;
+}
+.fb-timeline-container .fb-timeline {
+	width: 100%;
+	height: 100%;
+	max-width: 500px;
+}
+
+/* Twitter Timeline
+---------------------*/
+.twitter-timeline-container {
+	display: flex;
+	justify-content: center;
+	height: 400px;
+	width: 100%;
+}
+.twitter-timeline-container .twitter-timeline {
+	width: 100%;
+	height: 100%;
+	max-width: 500px;
+}
+
+/* Team Card Infinity Scroll Loader
+---------------------*/
+#content .wizard-pagination {
+	color: #fff;
+}
+
+/* intlTelInput RTL Bug Fix
+---------------------*/
+.intl-tel-input .flag-container {
+	direction: ltr;
+}
+
+/* Add New Action Button Loading Icon
+---------------------*/
+.addNewItem_action:not(.loading-items) .is-loading {
+	display: none;
+}
+
+/* Language limit message
+-------------------*/
+.language-upgrade-msg {
+	max-width: 100%;
+	white-space: normal;
+	text-align: start;
+	line-height: 1.5;
+}
+.languageBox .language-upgrade-msg {
+	cursor: pointer;
+}
+
+
+/* Team Card Tabs Order
+-------------------*/
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller[data-tab-id="content"] {
+	order: 1;
+}
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller[data-tab-id="buttons"] {
+	order: 2;
+}
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller[data-tab-id="cards"] {
+	order: 5;
+}
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller[data-tab-id="design"] {
+	order: 3;
+}
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller[data-tab-id="layouts"] {
+	order: 4;
+}
+#cardEditor[data-system-kind-num="4"] #cpTabLinks .cp-tab-controller {
+	order: 6;
+}
+
+/* Team Member Disabled Wizard Settings
+---------------------------*/
+.tm-disabled-setting {
+	position: relative;
+}
+.tm-disabled-setting:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.4;
+	background-color: #fff;
+	z-index: 1;
+}
+
+/* Sometimes we have long text in a label and the tooltip icon
+is not positioned correctly so we fixed that here
+---------------------------*/
+.fix-tooltip-long-text label:not(.has-switch) {
+	position: relative;
+	word-break: break-word;
+	padding-right: 15px;
+}
+html[dir="rtl"] .fix-tooltip-long-text label:not(.has-switch) {
+	padding-right: auto;
+	padding-left: 15px;
+}
+.fix-tooltip-long-text label a[data-rel="tooltip"] {
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translateY(50%);
+}
+html[dir="rtl"] .fix-tooltip-long-text label a[data-rel="tooltip"] {
+	right: auto;
+	left: 0;
+}
+
+/* Team Card - sub cards domain label style fix
+-----------------*/
+.s-c-d-a-label {
+	flex-flow: column;
+	align-items: flex-start;
+}
+
+/* Force sub-cards layout RTL Bug Fix
+------------------------------*/
+html[dir="rtl"] .radio.force-sub-cards-layout label span.lbl {
+	margin-left: 0px;
+	margin-right: -10px;
+}
+
+/* Team Card redirect Logo Tooltip Position Bug Fix
+------------------------------*/
+.redirect-logo-url-type {
+	position: relative;
+}
+.redirect-logo-url-type .fix-tooltip-long-text label a[data-rel="tooltip"] {
+	top: -1px;
+}
